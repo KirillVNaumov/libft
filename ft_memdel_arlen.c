@@ -1,22 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_memdel_arlen.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: knaumov <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/24 13:14:23 by knaumov           #+#    #+#             */
-/*   Updated: 2018/10/03 16:55:03 by knaumov          ###   ########.fr       */
+/*   Created: 2018/12/03 19:24:52 by knaumov           #+#    #+#             */
+/*   Updated: 2018/12/05 21:58:28 by knaumov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
+void	ft_memdel_arlen(void **ar)
 {
-	if (!lst)
-		return ;
-	if ((lst->next) != NULL)
-		(ft_lstiter(lst->next, f));
-	f(lst);
+	char	**s;
+	size_t	i;
+	size_t	n;
+
+	i = 0;
+	n = 0;
+	s = NULL;
+	if (ar)
+	{
+		s = (char **)ar;
+		while (ar[n] != NULL)
+			n++;
+		while (i < n)
+		{
+			ft_memdel((void **)&s[i]);
+			i++;
+		}
+		ft_memdel((void **)&ar);
+	}
 }

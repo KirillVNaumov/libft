@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_create_arr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: knaumov <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/24 10:11:47 by knaumov           #+#    #+#             */
-/*   Updated: 2018/10/03 16:55:22 by knaumov          ###   ########.fr       */
+/*   Created: 2018/11/26 18:05:30 by knaumov           #+#    #+#             */
+/*   Updated: 2018/12/05 21:55:56 by knaumov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void const *content, size_t content_size)
+char	**ft_create_arr(int height, int width)
 {
-	t_list	*list;
+	char	**arr;
+	int		i;
 
-	if (!(list = (t_list*)ft_memalloc(sizeof(t_list))))
-		return (NULL);
-	if (content)
-	{
-		if (!(list->content = (void*)ft_memalloc(content_size)))
-			return (NULL);
-		ft_memcpy(list->content, content, content_size);
-		list->content_size = content_size;
-	}
-	else
-	{
-		list->content = NULL;
-		list->content_size = 0;
-	}
-	list->next = NULL;
-	return (list);
+	arr = (char **)malloc(sizeof(char *) * (height + 1));
+	i = 0;
+	while (i < height)
+		arr[i++] = (char *)malloc(sizeof(char) * (width + 1));
+	arr[i] = NULL;
+	return (arr);
 }

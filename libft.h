@@ -6,7 +6,7 @@
 /*   By: knaumov <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 13:05:51 by knaumov           #+#    #+#             */
-/*   Updated: 2018/11/01 13:10:33 by knaumov          ###   ########.fr       */
+/*   Updated: 2019/01/07 13:14:45 by knaumov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,19 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <wchar.h>
-# include "ft_printf/ft_printf.h"
+# include "ft_printf.h"
 
+# define CLEAN "\e[1;1H\e[2J"
+# define CRED  "\x1B[31m"
+# define CBLUE  "\x1B[34m"
+# define CPINK  "\x1B[35m"
+# define CWHITE  "\x1B[39m"
+# define CBBLUE "\x1B[46m"
+# define CBYELLOW "\x1B[43m"
+# define CBBLACK "\x1B[40m"
+
+int					ft_isspace(int c);
+void				ft_memdel_arlen(void **ar);
 char				*ft_update(char *str, char *update);
 void				*ft_memset(void *b, int c, size_t len);
 char				*ft_bchar(int n, char c);
@@ -88,39 +99,11 @@ void				ft_putstr_fd(char const *s, int fd);
 void				ft_putwstr_fd(wchar_t *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
-typedef struct		s_list
-{
-	void			*content;
-	size_t			content_size;
-	struct s_list	*next;
-}					t_list;
-t_list				*ft_lstnew(void const *content, size_t content_size);
-void				ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
-void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
-void				ft_lstadd(t_list **alst, t_list *new);
-void				ft_lstiter(t_list *lst, void (*f)(t_list*elem));
-t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
-typedef struct		s_btree
-{
-	void			*item;
-	struct s_btree	*left;
-	struct s_btree	*right;
-
-}					t_btree;
-t_btree				*ft_btree_create_node(void *item);
-void				ft_btree_apply_infix(t_btree *root, void (*applyf)(void *));
-void				ft_btree_apply_suffix(t_btree *root, \
-		void (*applyf)(void *));
-void				ft_btree_apply_prefix(t_btree *root, \
-		void (*applyf)(void *));
-void				*ft_btree_search_item(t_btree *root, void *data_ref,\
-		int (*cmpf)(void *, void *));
-int					ft_btree_level_count(t_btree *root);
-void				ft_btree_insert_data(t_btree **root, void *item, \
-		int (*cmpf)(void *, void *));
-int					ft_lstsize(t_list *root);
 char				*ft_itoa_base(intmax_t value, int base);
 int					get_next_line(const int fd, char **line);
 char				*ft_strcon(char **arr, char *c);
+void				ft_clean_arr(char ***arr);
+char				**ft_create_arr(int height, int width);
+void				ft_clean_int_arr(int ***map);
 
 #endif

@@ -1,19 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_clean_int_arr.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: knaumov <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/24 13:13:06 by knaumov           #+#    #+#             */
-/*   Updated: 2018/10/05 17:37:30 by knaumov          ###   ########.fr       */
+/*   Created: 2018/12/05 21:56:18 by knaumov           #+#    #+#             */
+/*   Updated: 2018/12/05 21:58:57 by knaumov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+void	ft_clean_int_arr(int ***arr)
 {
-	del((*alst)->content, (*alst)->content_size);
-	ft_memdel((void**)alst);
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	if (!(arr)[i])
+		return ;
+	while ((*arr)[i])
+		i++;
+	while (j < i)
+	{
+		free((*arr)[j]);
+		j++;
+	}
+	free(*arr);
 }

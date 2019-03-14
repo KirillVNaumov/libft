@@ -6,7 +6,7 @@
 /*   By: knaumov <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 10:15:59 by knaumov           #+#    #+#             */
-/*   Updated: 2018/11/01 14:21:37 by knaumov          ###   ########.fr       */
+/*   Updated: 2019/01/03 18:51:37 by knaumov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdarg.h>
 # include <wchar.h>
-# include "../libft.h"
+# include "libft.h"
 
 typedef struct	s_flags_ft_printf
 {

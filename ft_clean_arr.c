@@ -1,20 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lsdel.c                                         :+:      :+:    :+:   */
+/*   ft_freearr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: knaumov <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/24 10:29:48 by knaumov           #+#    #+#             */
-/*   Updated: 2018/11/01 16:25:29 by knaumov          ###   ########.fr       */
+/*   Created: 2018/11/26 16:00:19 by knaumov           #+#    #+#             */
+/*   Updated: 2019/01/14 13:09:18 by knaumov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
+void		ft_clean_arr(char ***argv)
 {
-	if ((*alst)->next != NULL)
-		ft_lstdel(&(*alst)->next, del);
-	ft_lstdelone(&(*alst), del);
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	if (!(*argv)[i])
+	{
+		if (*argv)
+			free(*argv);
+		return ;
+	}
+	while ((*argv)[i])
+		i++;
+	while (j < i)
+	{
+		free((*argv)[j]);
+		j++;
+	}
+	free(*argv);
 }

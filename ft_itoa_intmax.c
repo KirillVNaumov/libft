@@ -6,18 +6,11 @@
 /*   By: knaumov <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 15:36:38 by knaumov           #+#    #+#             */
-/*   Updated: 2018/10/31 15:37:33 by knaumov          ###   ########.fr       */
+/*   Updated: 2019/04/24 21:24:01 by knaumov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static long long	ft_abs(long long nb)
-{
-	if (nb < 0)
-		nb = -nb;
-	return (nb);
-}
 
 static char			*itoa_filler(char *tab, long long value, int flag)
 {

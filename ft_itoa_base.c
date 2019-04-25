@@ -6,18 +6,11 @@
 /*   By: knaumov <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 15:24:43 by knaumov           #+#    #+#             */
-/*   Updated: 2018/10/30 13:40:30 by knaumov          ###   ########.fr       */
+/*   Updated: 2019/04/24 21:22:45 by knaumov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static intmax_t		ft_abs(intmax_t nb)
-{
-	if (nb < 0)
-		nb = -nb;
-	return (nb);
-}
 
 static char			*itoa_filler(char *tab, intmax_t value, int base, int flag)
 {

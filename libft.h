@@ -6,7 +6,7 @@
 /*   By: knaumov <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 13:05:51 by knaumov           #+#    #+#             */
-/*   Updated: 2019/01/07 13:14:45 by knaumov          ###   ########.fr       */
+/*   Updated: 2019/04/24 21:23:16 by knaumov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define CBYELLOW "\x1B[43m"
 # define CBBLACK "\x1B[40m"
 
+intmax_t			ft_abs(intmax_t nb);
 int					ft_isspace(int c);
 void				ft_memdel_arlen(void **ar);
 char				*ft_update(char *str, char *update);

@@ -6,12 +6,13 @@
 #    By: knaumov <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/10 09:50:35 by knaumov           #+#    #+#              #
-#    Updated: 2019/01/10 12:29:01 by knaumov          ###   ########.fr        #
+#    Updated: 2019/04/24 21:21:07 by knaumov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 FILES = ./ft_atoi.c \
+		./ft_abs.c \
 		./ft_bzero.c \
 		./ft_memdel_arlen.c \
 		./ft_isspace.c \

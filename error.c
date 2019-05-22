@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: knaumov <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/18 14:39:34 by knaumov           #+#    #+#             */
-/*   Updated: 2019/05/21 23:34:28 by knaumov          ###   ########.fr       */
+/*   Created: 2019/05/06 12:31:46 by knaumov           #+#    #+#             */
+/*   Updated: 2019/05/06 12:32:27 by knaumov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char const *s, int fd)
+void		error(char *reason)
 {
-	if (s == NULL)
-		return ;
-	write(fd, &s[i], ft_strlen(s));
+	ft_printf("%sError: %s\n", CRED, reason);
+	exit(1);
 }

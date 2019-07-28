@@ -32,6 +32,7 @@ typedef struct	s_flags_ft_printf
 	char		conversion;
 	char		*format;
 }				t_flags_ft_printf;
+
 int				parse_flags(char **format, t_flags_ft_printf *flags, \
 			va_list *arg);
 char			*handling_flags(char **format, t_flags_ft_printf *flags);

@@ -10,8 +10,19 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
-FILES = ./ft_atoi.c \
+CLEAR_LINE	= \033[2K
+BEGIN_LINE	= \033[A
+COL_END		= \033[0m
+COL_RED		= \033[1;31m
+COL_GREEN	= \033[1;32m
+COL_YELLOW	= \033[1;33m
+COL_BLUE	= \033[1;34m
+COL_VIOLET	= \033[1;35m
+COL_CYAN	= \033[1;36m
+COL_WHITE	= \033[1;37m
+
+NAME := libft.a
+FILES := ./ft_atoi.c \
 		./ft_abs.c \
 		./ft_bzero.c \
 		./ft_memdel_arlen.c \
@@ -116,36 +127,39 @@ FILES = ./ft_atoi.c \
 		./parse_flags.c \
 		./printing_wide_string.c
 
-OBJ =   $(FILES:.c=.o)
+OBJ := 	$(FILES:.c=.o)
 
-RESET = \033[0m
-RED = \033[0;31m
-GREEN = \033[0;32m
-BLUE = \033[0;36m
-RED_EXTRA = \033[1;31m
-GREEN_EXTRA = \033[1;32m
-BLUE_EXTRA = \033[1;36m
+PWD :=		$(shell pwd)
 
-%.o : %.c
-	@echo "$(GREEN) 	- Creating $(GREEN_EXTRA)$< $(GREEN)for $(GREEN_EXTRA)Libft..."
-	@gcc -g -Wall -Werror -Wextra -o $@ -c $<
+OBJDIR := 	obj
 
-all: $(NAME)
+OBJP :=		$(addprefix $(OBJDIR)/, $(FILES:.c=.o))
+ONLYDIR :=	$(foreach dir, $(OBJP), $(shell dirname $(dir)))
 
-$(NAME): $(OBJ)
-	@echo "$(GREEN_EXTRA)   Libft: $(GREEN)Compiling $(GREEN_EXTRA)libft.a$(RESET)"
-	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
-	@echo "$(BLUE_EXTRA)   Libft: $(NAME)$(BLUE): Complete$(RESET)"
+FLAG := -Wall -Wextra -Werror -g
 
-clean:
-	@if [ -a "./ft_atoi.o" ]; then echo "$(RED_EXTRA)   Libft: $(RED)Deleting objects for $(RED_EXTRA)libft.a$(RESET)"; fi
-	@if [ -a "./ft_atoi.o" ]; then /bin/rm -f $(OBJ); fi
-	@echo "$(BLUE_EXTRA)   Libft: clean$(BLUE): Complete$(RESET)"
+TOTAL_FILES := $(shell echo $(FILES) | wc -w | sed -e 's/ //g')
+CURRENT_FILES = $(shell ls $(PWD)/obj/ 2> /dev/null | wc -l | sed -e 's/ //g')
 
-fclean: clean
-	@if [ -a "$(NAME)" ]; then echo "$(RED_EXTRA)   Libft: $(RED)Deleting $(RED_EXTRA)libft.a$(RESET)"; fi
-	@if [ -a "$(NAME)" ]; then /bin/rm -f $(NAME); fi
-	@echo "$(BLUE_EXTRA)   Libft: fclean$(BLUE): Complete$(RESET)"
+all : $(NAME)
 
-re:	fclean all
+$(NAME) : $(OBJP)
+			@ar rc $(NAME) $(OBJP)
+			@echo "$(CLEAR_LINE)$(COL_BLUE)[$(NAME)] $(COL_YELLOW)Finished compilation. Output file : $(COL_VIOLET)$(PWD)/$(NAME)$(COL_END)"
+
+$(OBJDIR)/%.o: %.c libft.h ft_printf.h
+			@mkdir -p $(ONLYDIR)
+			@gcc -c $(FLAG) $< -o $@
+			@echo "$(CLEAR_LINE)$(COL_BLUE)[$(NAME)] $(COL_YELLOW)Compiling file [$(COL_VIOLET)$<$(COL_YELLOW)]. ($(CURRENT_FILES) / $(TOTAL_FILES))$(COL_END)$(BEGIN_LINE)"
+
+clean :
+			@if [ -d "$(OBJDIR)" ]; then /bin/rm -rf $(OBJDIR); \
+			fi
+			@echo "$(COL_BLUE)[$(NAME)] $(COL_YELLOW)Removed $(COL_VIOLET)compiled objects.$(COL_END)";
+
+fclean :	clean
+			@if [ -a "$(NAME)" ]; then /bin/rm -f $(NAME); \
+			fi
+			@echo "$(COL_BLUE)[$(NAME)] $(COL_YELLOW)Removed $(COL_VIOLET)$(NAME)$(COL_END)";
+			
+re :		fclean all
